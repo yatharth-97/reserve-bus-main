@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Trip = require('../models/trips');
+const Trip = require('../models/trips.model.js');
 
 router.post('/addTrip', async (req, res) => {
   try {

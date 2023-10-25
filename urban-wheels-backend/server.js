@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const connectDB = require('./db/connect');
 require('dotenv').config();
-const tripRouter = require('./routes/tripRouter');
-const bookingsRouter = require('./routes/bookingsRouter');
+const tripRouter = require('./routes/trip.route.js');
+const bookingsRouter = require('./routes/bookings.route.js');
 
 // middleware
 app.use(express.json());
