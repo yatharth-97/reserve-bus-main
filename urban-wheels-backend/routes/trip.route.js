@@ -31,9 +31,9 @@ router.get('/pastTrips', async (req, res) => {
  * When you make a GET request to /api/tripsByDate, you
  *  need to provide the date as a query parameter
  */
-router.get('/tripsByDate', async (req, res) => {
+router.get('/tripsByDate/:date', async (req, res) => {
   try {
-    const { date } = req.query;
+    const { date } = req.params.date;
 
     if (!date) {
       return res.status(400).json({ error: 'Date parameter is required' });
