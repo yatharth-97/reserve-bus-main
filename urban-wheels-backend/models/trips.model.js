@@ -27,7 +27,7 @@ const tripsSchema = new mongoose.Schema({
     required: true,
   },
   // endTime: Number,
-  endTime: {
+  EndTime: {
     type: Date,
     required: true,
   },
@@ -37,7 +37,7 @@ const tripsSchema = new mongoose.Schema({
     required: true,
   },
   // seatBooked: [String],
-  seatBooked: {
+  SeatBooked: {
     type: [String],
     required: true,
   },
