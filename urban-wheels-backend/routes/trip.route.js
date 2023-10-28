@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Trip = require('../models/trips.model.js');
 const Ticket = require('../models/tickets.model.js');
+// const asyncWrapper = require('../middleware/async.js');
 
 // To get Trip details
 router.get('/trips', async (req, res) => {
