@@ -3,14 +3,12 @@ const app = express();
 const connectDB = require('./db/connect');
 require('dotenv').config();
 const tripRouter = require('./routes/trips.route.js');
-const bookingsRouter = require('./routes/bookings.route.js');
 
 // middleware
 app.use(express.json());
 
 // routes
 app.use('/api', tripRouter);
-// app.use('/api', bookingsRouter);
 
 const port = process.env.PORT || 3000;
 
