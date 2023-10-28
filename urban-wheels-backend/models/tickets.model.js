@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const ticketsSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: [true, 'must provide name'],
+  },
   date: Date,
   from: String,
   to: String,
