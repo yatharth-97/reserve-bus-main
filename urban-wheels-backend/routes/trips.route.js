@@ -99,8 +99,10 @@ router.get('/date', async (req, res) => {
 // to get ticket info by adding from, to and category of the trip
 router.get('/ticket-info', async (req, res) => {
   try {
+    // example: localhost:3000/api/ticket-info?from=Delhi&to=Agra&category=A/C Sleeper (2+1)&startTime=2023-01-17
     const { from, to, category, startTime } = req.query;
-    const filter = {};
+    let encodedCategory = encodeURIComponent(category); // will now be "A%2FC%20Sleeper%20%282%2B1%29"
+    const filter = {}; // we will add this object in find
 
     if (from) {
       filter.from = from;
@@ -109,10 +111,11 @@ router.get('/ticket-info', async (req, res) => {
       filter.to = to;
     }
     if (category) {
-      filter.category = category;
+      filter.category = decodeURIComponent(encodedCategory);
+      // filter.category = category;
     }
     if (startTime) {
-      filter.startTime = startTime;
+      filter.startTime = new Date(startTime);
     }
 
     const trips = await Trip.find(filter);
