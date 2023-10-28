@@ -111,7 +111,7 @@ router.get('/ticket-info', async (req, res) => {
       filter.to = to;
     }
     if (category) {
-      filter.category = decodeURIComponent(encodedCategory);
+      filter.category = encodedCategory;
       // filter.category = category;
     }
     if (startTime) {
@@ -119,7 +119,7 @@ router.get('/ticket-info', async (req, res) => {
     }
 
     const trips = await Trip.find(filter);
-    res.status(200).json(trips);
+    res.status(200).json({ message: ' Ticket Info done', trips: trips });
   } catch (error) {
     res.status(500).json({ message: 'Failed to get details' });
   }
