@@ -1,14 +1,16 @@
 const express = require('express');
 const app = express();
-const connectDB = require('./db/connect');
+const connectDB = require('../db/connect');
 require('dotenv').config();
-const tripRouter = require('./routes/trips.route.js');
+const tripRouter = require('../routes/trips.route.js');
+const ticketRouter = require('../routes/ticket.route.js');
 
 // middleware
 app.use(express.json());
 
 // routes
 app.use('/api', tripRouter);
+app.use('/api', ticketRouter);
 
 const port = process.env.PORT || 3000;
 
