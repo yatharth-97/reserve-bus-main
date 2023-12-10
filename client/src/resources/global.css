@@ -8,7 +8,6 @@
 }
 
 /* inputs */
-
 input {
   height: 40px;
   border: 2px solid gray;
@@ -17,14 +16,12 @@ input {
 }
 
 /* card */
-
 .card {
   border: 2px solid gray;
   box-shadow: 0 0 2px gray;
 }
 
 /* text sizes */
-
 .text-2xl {
   font-size: 30px;
 }
@@ -36,4 +33,27 @@ input {
 }
 .text-md {
   font-size: 18px;
+}
+
+/* buttons */
+.primary-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.secondary-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* anchor */
+
+a {
+  text-decoration: none;
+  color: var(--primary);
 }
