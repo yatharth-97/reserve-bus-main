@@ -1,11 +1,19 @@
-import './App.css';
-import { Button } from 'antd';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './resources/global.css';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className='App m-5'>
-      <h1>RESERVE</h1>
-      <Button type='primary m-5'>Primary Button</Button>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
