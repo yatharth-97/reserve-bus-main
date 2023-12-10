@@ -1,17 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import BusList from './pages/BusList';
+import './App.css';
+import { Button } from 'antd';
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='buses' element={<BusList />} />
-        </Routes>
-      </Router>
-    </>
+    <div className='App m-5'>
+      <h1>RESERVE</h1>
+      <Button type='primary m-5'>Primary Button</Button>
+    </div>
   );
 }
 
