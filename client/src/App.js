@@ -5,10 +5,12 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import PublicRoute from './components/PublicRoute';
 import ProtectedRoute from './components/ProtectedRoute';
+import Loader from './components/Loader';
 
 function App() {
   return (
     <div>
+      <Loader />
       <BrowserRouter>
         <Routes>
           <Route
