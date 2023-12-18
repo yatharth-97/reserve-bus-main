@@ -5,11 +5,13 @@ import { message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetUser } from '../redux/usersSlice';
 import { HideLoading, ShowLoading } from '../redux/alertsSlice';
+import DefaultLayout from './DefaultLayout';
 
 function ProtectedRoute({ children }) {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alerts);
   const navigate = useNavigate();
+
   const validateToken = async () => {
     try {
       dispatch(ShowLoading());
@@ -22,6 +24,7 @@ function ProtectedRoute({ children }) {
           },
         }
       );
+
       if (response.data.success) {
         dispatch(HideLoading());
         dispatch(SetUser(response.data.data));
@@ -47,7 +50,7 @@ function ProtectedRoute({ children }) {
     }
   }, []);
 
-  return <div>{loading ? <div>Loading...</div> : <>{children}</>}</div>;
+  return <div>{!loading && <DefaultLayout>{children}</DefaultLayout>}</div>;
 }
 
 export default ProtectedRoute;
