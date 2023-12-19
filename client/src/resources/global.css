@@ -2,7 +2,6 @@
 .h-screen {
   height: 100vh;
 }
-
 .w-400 {
   width: 400px;
 }
@@ -57,6 +56,16 @@ a {
   color: var(--primary);
 }
 
+i {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+h1 {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 /* spinner/loader */
 .spinner-parent {
   position: absolute;
@@ -70,7 +79,6 @@ a {
   background-color: rgba(0, 0, 0, 0.507);
   z-index: 10000;
 }
-
 .spinner-border {
   color: white;
   height: 80px;
