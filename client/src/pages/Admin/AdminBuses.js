@@ -3,8 +3,9 @@ import PageTitle from '../../components/PageTitle';
 import BusForm from '../../components/BusForm';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../../redux/alertsSlice';
-import { message } from 'antd';
+import { Table, message } from 'antd';
 import { axiosInstance } from '../../helpers/axiosInstance';
+import moment from 'moment';
 
 function AdminBuses() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function AdminBuses() {
     {
       title: 'Journey Date',
       dataIndex: 'journeyDate',
+      render: (journeyDate) => moment(journeyDate).format('DD-MM-YYYY'),
     },
     {
       title: 'Status',
@@ -55,6 +57,12 @@ function AdminBuses() {
     {
       title: 'Action',
       dataIndex: 'action',
+      render: (action, record) => (
+        <div className='d-flex gap-3'>
+          <i class='ri-delete-bin-line'></i>
+          <i class='ri-pencil-line'></i>
+        </div>
+      ),
     },
   ];
 
@@ -70,6 +78,8 @@ function AdminBuses() {
           Add Bus
         </button>
       </div>
+
+      <Table columns={columns} dataSource={buses} />
 
       {showBusForm && (
         <BusForm
