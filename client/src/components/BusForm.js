@@ -5,7 +5,13 @@ import { useDispatch } from 'react-redux';
 import { axiosInstance } from '../helpers/axiosInstance';
 import { HideLoading, ShowLoading } from '../redux/alertsSlice';
 
-function BusForm({ showBusForm, setShowBusForm, type = 'add' }) {
+function BusForm({
+  showBusForm,
+  setShowBusForm,
+  type = 'add',
+  selectedBus,
+  getData,
+}) {
   const dispatch = useDispatch();
 
   const onFinish = async (values) => {
@@ -13,10 +19,11 @@ function BusForm({ showBusForm, setShowBusForm, type = 'add' }) {
       dispatch(ShowLoading());
       let response = null;
       if (type === 'add') {
-        response = await axiosInstance.post('/api/buses/add-bus', {
-          ...values,
-          journeyDate: moment(values.journeyDate).format('DD-MM-YYYY'),
-        });
+        response = await axiosInstance.post(
+          '/api/buses/add-bus',
+          values
+          // {...values, journeyDate: moment(values.journeyDate).format('dd-mm-yyyy'),} //* no need of this
+        );
       }
       if (response.data.success) {
         message.success(response.data.message);
@@ -38,7 +45,14 @@ function BusForm({ showBusForm, setShowBusForm, type = 'add' }) {
       onCancel={() => setShowBusForm(false)}
       footer={false}
     >
-      <Form layout='vertical' onFinish={onFinish}>
+      <Form
+        layout='vertical'
+        onFinish={onFinish}
+        initialValues={{
+          ...selectedBus,
+          journeyDate: moment(selectedBus?.journeyDate).toDate(),
+        }}
+      >
         <Row gutter={[10, 10]}>
           <Col lg={24} xs={24}>
             <Form.Item label='Bus Name' name='name'>
