@@ -10,6 +10,7 @@ function BusForm({
   setShowBusForm,
   type = 'add',
   selectedBus,
+  setSelectedBus,
   getData,
 }) {
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ function BusForm({
       dispatch(ShowLoading());
       let response = null;
       if (type === 'add') {
-        response = await axiosInstance.post(
-          '/api/buses/add-bus',
-          values
-          // {...values, journeyDate: moment(values.journeyDate).format('dd-mm-yyyy'),} //* no need of this
-        );
+        response = await axiosInstance.post('/api/buses/add-bus', values);
+      } else {
+        response = await axiosInstance.post('/api/buses/update-bus', {
+          ...values,
+          _id: selectedBus._id,
+        });
       }
       if (response.data.success) {
         message.success(response.data.message);
@@ -31,6 +33,9 @@ function BusForm({
         message.error(response.data.message);
       }
       dispatch(HideLoading());
+      getData();
+      setShowBusForm(false);
+      setSelectedBus(null);
     } catch (error) {
       message.error(error.message);
       dispatch(HideLoading());
@@ -40,19 +45,15 @@ function BusForm({
   return (
     <Modal
       width={800}
-      title='Add Bus'
+      title={type === 'add' ? 'Add Bus' : 'Update Bus'}
       visible={showBusForm}
-      onCancel={() => setShowBusForm(false)}
+      onCancel={() => {
+        setSelectedBus(null);
+        setShowBusForm(false);
+      }}
       footer={false}
     >
-      <Form
-        layout='vertical'
-        onFinish={onFinish}
-        initialValues={{
-          ...selectedBus,
-          journeyDate: moment(selectedBus?.journeyDate).toDate(),
-        }}
-      >
+      <Form layout='vertical' onFinish={onFinish} initialValues={selectedBus}>
         <Row gutter={[10, 10]}>
           <Col lg={24} xs={24}>
             <Form.Item label='Bus Name' name='name'>

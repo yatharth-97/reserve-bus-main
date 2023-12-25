@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../../redux/alertsSlice';
 import { Table, message } from 'antd';
 import { axiosInstance } from '../../helpers/axiosInstance';
-import moment from 'moment';
 
 function AdminBuses() {
   const dispatch = useDispatch();
@@ -94,6 +93,7 @@ function AdminBuses() {
           setShowBusForm={setShowBusForm}
           type={selectedBus ? 'edit' : 'add'}
           selectedBus={selectedBus}
+          setSelectedBus={setSelectedBus}
           getData={getBuses}
         />
       )}
