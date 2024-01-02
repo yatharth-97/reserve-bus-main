@@ -37,14 +37,14 @@ function BookNow() {
   return (
     <div>
       {bus && (
-        <Row className='mt-3'>
+        <Row className='mt-3' gutter={20}>
           <Col lg={12} xs={24} sm={24}>
             <h1 className='text-2xl text-secondary'>{bus.name}</h1>
             <h1 className='text-md'>
               {bus.from} - {bus.to}
             </h1>
             <hr />
-            <div>
+            <div className='flex flex-col gap-1'>
               <h1 className='text-lg'>
                 Journey Date : <b>{bus.journeyDate}</b>
               </h1>
@@ -57,6 +57,18 @@ function BookNow() {
               <h1 className='text-lg'>
                 Arrival Time : <b>{bus.arrival}</b>
               </h1>
+            </div>
+            <hr />
+
+            <div className='flex flex-col gap-3'>
+              <h1 className='text-2xl'>
+                Selected Seats : <b>{selectedSeats.join(', ')}</b>
+              </h1>
+              <h1 className='text-2xl mt-2'>
+                Fare: <b>₹ {bus.fare * selectedSeats.length}</b>
+              </h1>
+
+              <button className='primary-btn mt-3'>Book Now</button>
             </div>
           </Col>
 
