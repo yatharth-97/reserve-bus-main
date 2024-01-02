@@ -10,6 +10,7 @@ import PublicRoute from './components/PublicRoute';
 import ProtectedRoute from './components/ProtectedRoute';
 import Loader from './components/Loader';
 import { useSelector } from 'react-redux';
+import BookNow from './pages/BookNow';
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -24,6 +25,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/book-now/:id'
+            element={
+              <ProtectedRoute>
+                <BookNow />
               </ProtectedRoute>
             }
           />
