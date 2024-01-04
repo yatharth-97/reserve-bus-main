@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../redux/alertsSlice';
-import '../resourses/auth.css';
+import '../resources/auth.css';
 
 function Register() {
   const dispatch = useDispatch();

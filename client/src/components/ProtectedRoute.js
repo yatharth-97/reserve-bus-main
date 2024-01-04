@@ -39,6 +39,14 @@ function ProtectedRoute({ children }) {
       navigate('/login');
     }
   };
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      validateToken();
+    } else {
+      navigate('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (window.location.pathname.includes('admin')) {

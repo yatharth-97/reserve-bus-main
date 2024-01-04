@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './resources/global.css';
-import AdminHome from './pages/Admin/AdminHome';
+// import AdminHome from './pages/Admin/AdminHome';
 import AdminBuses from './pages/Admin/AdminBuses';
 import AdminUsers from './pages/Admin/AdminUsers';
 import Home from './pages/Home';
@@ -11,6 +11,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Loader from './components/Loader';
 import { useSelector } from 'react-redux';
 import BookNow from './pages/BookNow';
+import Bookings from './pages/Bookings';
+import AdminBookings from './pages/Admin/AdminBookings';
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -36,14 +38,15 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route
-            path='/admin'
+          <Route
+            path='/bookings'
             element={
               <ProtectedRoute>
-                <AdminHome />
+                <Bookings />
               </ProtectedRoute>
             }
-          /> */}
+          />
+
           <Route
             path='/admin/buses'
             element={
@@ -57,6 +60,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminUsers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/admin/bookings'
+            element={
+              <ProtectedRoute>
+                <AdminBookings />
               </ProtectedRoute>
             }
           />
