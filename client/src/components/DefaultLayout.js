@@ -59,7 +59,10 @@ function DefaultLayout({ children }) {
   ];
 
   const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
-  const activeRoute = window.location.pathname;
+  let activeRoute = window.location.pathname;
+  if (window.location.pathname.includes('book-now')) {
+    activeRoute = '/';
+  }
 
   return (
     <div className='layout-parent'>
@@ -70,7 +73,7 @@ function DefaultLayout({ children }) {
             {user?.name} <br /> Role: {user?.isAdmin ? 'Admin' : 'User'}
           </h1>
         </div>
-        <div className='d-flex flex-column gap-2 justify-content-start menu'>
+        <div className='d-flex flex-column gap-3 justify-content-start menu'>
           {menuToBeRendered.map((item, index) => {
             return (
               <div
