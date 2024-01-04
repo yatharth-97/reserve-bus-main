@@ -30,6 +30,25 @@ function BookNow() {
     }
   };
 
+  const bookNow = async () => {
+    try {
+      dispatch(ShowLoading());
+      const response = await axiosInstance.post('/api/bookings/book-seat', {
+        bus: bus._id,
+        seats: selectedSeats,
+      });
+      dispatch(HideLoading());
+      if (response.data.success) {
+        message.success(response.data.message);
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getBus();
   }, []);
@@ -57,18 +76,32 @@ function BookNow() {
               <h1 className='text-lg'>
                 Arrival Time : <b>{bus.arrival}</b>
               </h1>
+              <h1 className='text-lg'>
+                Capacity : <b>{bus.capacity}</b>
+              </h1>
+              <h1 className='text-lg'>
+                Seats Left : <b>{bus.capacity - bus.seatsBooked.length}</b>
+              </h1>
             </div>
             <hr />
 
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-2'>
               <h1 className='text-2xl'>
-                Selected Seats : <b>{selectedSeats.join(', ')}</b>
+                Selected Seats : {selectedSeats.join(', ')}
               </h1>
               <h1 className='text-2xl mt-2'>
-                Fare: <b>₹ {bus.fare * selectedSeats.length}</b>
+                Fare: ₹ {bus.fare * selectedSeats.length}
               </h1>
-
-              <button className='primary-btn mt-3'>Book Now</button>
+              <hr />
+              <button
+                className={`btn btn-primary ${
+                  selectedSeats.length === 0 && 'disabled-btn'
+                }`}
+                onClick={bookNow}
+                disabled={selectedSeats.length === 0}
+              >
+                Book Now
+              </button>
             </div>
           </Col>
 
