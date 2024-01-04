@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { message } from 'antd';
@@ -24,33 +24,34 @@ function ProtectedRoute({ children }) {
           },
         }
       );
-
+      dispatch(HideLoading());
       if (response.data.success) {
-        dispatch(HideLoading());
         dispatch(SetUser(response.data.data));
       } else {
-        dispatch(HideLoading());
         localStorage.removeItem('token');
         message.error(response.data.message);
         navigate('/login');
       }
     } catch (error) {
+      dispatch(HideLoading());
       localStorage.removeItem('token');
       message.error(error.message);
-      dispatch(HideLoading());
       navigate('/login');
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      validateToken();
-    } else {
-      navigate('/login');
+    if (window.location.pathname.includes('admin')) {
+      if (!user?.isAdmin) {
+        message.error('You are not authorized to access this page');
+        window.location.href = '/';
+      }
     }
-  }, []);
+  }, [user]);
 
-  return <div>{user && <DefaultLayout>{children}</DefaultLayout>}</div>;
+  return (
+    <div>{user !== null && <DefaultLayout>{children}</DefaultLayout>}</div>
+  );
 }
 
 export default ProtectedRoute;

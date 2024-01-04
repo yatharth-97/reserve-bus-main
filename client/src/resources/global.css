@@ -7,7 +7,8 @@
 }
 
 /* inputs */
-input {
+input,
+select {
   height: 40px;
   border: 2px solid gray;
   width: 100%;
@@ -23,16 +24,23 @@ input {
 
 /* text sizes */
 .text-2xl {
-  font-size: 30px;
+  font-size: 30px !important;
 }
 .text-xl {
-  font-size: 25px;
+  font-size: 25px !important;
 }
 .text-lg {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 .text-md {
-  font-size: 18px;
+  font-size: 18px !important;
+}
+
+.secondary-text {
+  color: var(--secondary) !important;
+}
+.primary-text {
+  color: var(--primary) !important;
 }
 
 .underline {
@@ -47,6 +55,7 @@ input {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  height: 40px;
 }
 .secondary-btn {
   background-color: var(--secondary) !important;
@@ -54,15 +63,23 @@ input {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  height: 40px;
+}
+
+.outlined {
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
+  background-color: white !important;
 }
 
 .disabled-btn {
-  background-color: grey !important;
+  background-color: gray !important;
   color: white;
   border: none !important;
   padding: 10px 20px;
   border-radius: 0 !important;
   cursor: not-allowed;
+  height: 40px;
 }
 
 button {
@@ -71,8 +88,8 @@ button {
 
 /* anchor */
 a {
-  text-decoration: none;
-  color: var(--primary);
+  text-decoration: none !important;
+  color: var(--primary) !important;
 }
 
 i {
@@ -100,7 +117,11 @@ p {
   z-index: 10000;
 }
 .spinner-border {
-  color: white;
-  height: 80px;
-  width: 80px;
+  color: white !important;
+  height: 80px !important;
+  width: 80px !important;
+}
+
+table {
+  border: 1px solid rgb(185, 185, 185) !important;
 }

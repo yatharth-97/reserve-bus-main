@@ -1,5 +1,5 @@
 .bus-container {
-  width: 300px;
+  width: 300px !important;
   border: 2px solid gray;
   padding: 10px;
 }
@@ -19,7 +19,7 @@
 }
 
 .booked-seat {
-  background-color: grey;
+  background-color: gray;
   color: white;
   pointer-events: none !important;
   cursor: disabled !important;

@@ -14,7 +14,7 @@ function SeatSelection({ selectedSeats, setSelectedSeats, bus }) {
   };
 
   return (
-    <div>
+    <div className='mx-5'>
       <div className='bus-container'>
         <Row gutter={[10, 10]}>
           {Array.from(Array(capacity).keys()).map((seat) => {
@@ -22,7 +22,7 @@ function SeatSelection({ selectedSeats, setSelectedSeats, bus }) {
             if (selectedSeats.includes(seat + 1)) {
               seatClass = 'selected-seat';
             } else if (bus.seatsBooked.includes(seat + 1)) {
-              seatClass = 'selected-seat';
+              seatClass = 'booked-seat';
             }
             return (
               <Col span={6}>
