@@ -30,6 +30,7 @@ function DefaultLayout({ children }) {
       path: '/logout',
     },
   ];
+
   const adminMenu = [
     {
       name: 'Home',
