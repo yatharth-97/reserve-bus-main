@@ -3,11 +3,13 @@ const app = express();
 require('dotenv').config();
 const connectDB = require('./config/dbConfig');
 const usersRoute = require('./routes/usersRoute');
+const busesRoute = require('./routes/busesRoute');
 
 app.use(express.json());
 
 // routes
 app.use('/api/users', usersRoute);
+app.use('/api/buses', busesRoute);
 
 const port = process.env.PORT || 5000;
 

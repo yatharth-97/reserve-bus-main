@@ -30,7 +30,7 @@ function BusForm({ showBusForm, setShowBusForm, type = 'add' }) {
     <Modal
       width={800}
       title='Add Bus'
-      visible={showBusForm}
+      open={showBusForm}
       onCancel={() => setShowBusForm(false)}
       footer={false}
     >
